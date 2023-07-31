@@ -39,7 +39,7 @@ fi
 
 git remote add external ${GITHUB_URL}
 git fetch external
-git push external HEAD:main
+git push -f external HEAD:main
 
 # Force update external-main in GitLab (since the bot amended the last commit)
 git push -f origin external-main
