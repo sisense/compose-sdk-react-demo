@@ -13,6 +13,7 @@ import * as DM from "./sample-ecommerce";
 import CodeBlock from "../../components/CodeBlock";
 import SubTitle from "../../components/SubTitle";
 import { measures } from "@sisense/sdk-data";
+import Header from "../../components/Header";
 
 export default function ConnectedChartExample() {
   const [view, setView] = useState("Preview");
@@ -22,7 +23,7 @@ export default function ConnectedChartExample() {
   }, [view]);
   return (
     <article className="my-8">
-      <header className="flex items-baseline">
+      <Header>
         <div className="flex flex-col mr-4  flex-1">
           <SubTitle id="model-with-chart">Chart queries and renders data from a Data Model</SubTitle>
         </div>
@@ -31,7 +32,7 @@ export default function ConnectedChartExample() {
           onChange={setView}
           labels={["Preview", "React"]}
         />
-      </header>
+      </Header>
 
       {view === "Preview" && (
         <Chart

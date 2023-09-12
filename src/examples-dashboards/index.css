@@ -1,13 +1,6 @@
 .dashboard-container {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  grid-template-areas:
-    "i c4 c4 c4 c4 c5 c5 c5 c5 filters"
-    "i c4 c4 c4 c4 c5 c5 c5 c5 filters"
-    "i c1 c1 c2 c2 c3 c3 c3 c3 filters"
-    "i c1 c1 c2 c2 c3 c3 c3 c3 filters";
 }
 
 .i {
@@ -16,9 +9,6 @@
 .f {
   grid-area: filters;
   width: 234px;
-  /* border-bottom: 0;
-  border-right: 0; */
-
 }
 .c1 {
   grid-area: c1;
@@ -36,7 +26,6 @@
   grid-area: c5;
 }
 
-
 .i,
 .f,
 .c1,
@@ -46,5 +35,4 @@
 .c5 {
   /* border-bottom: 2px solid rgb(168, 85, 247); */
   /* border-right: 2px solid rgb(168, 85, 247); */
-
 }

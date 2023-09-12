@@ -7,6 +7,7 @@ import { LineChart, LineStyleOptions } from "@sisense/sdk-ui";
 import CodeBlock from "../components/CodeBlock";
 import SubTitle from "../components/SubTitle";
 import Paragraph from "../components/Paragraph";
+import Header from "../components/Header";
 
 const styleOptions = {
   legend: {
@@ -38,8 +39,8 @@ export default function LineChartExample() {
 
   return (
     <CodeHighlight uniqueKey={view}>
-      <article className="my-8" id="Line">
-        <header className="flex items-baseline">
+      <article className="my-8 w-full" id="Line">
+      <Header>
           <div className="flex flex-col mr-4 flex-1">
             <SubTitle id="Line">Line chart</SubTitle>
             <Paragraph>
@@ -57,7 +58,7 @@ export default function LineChartExample() {
             onChange={setView}
             labels={["Preview", "React"]}
           />
-        </header>
+        </Header>
         {view === "Preview" && (
           <LineChart dataSet={exampleData.data}
             dataOptions={{

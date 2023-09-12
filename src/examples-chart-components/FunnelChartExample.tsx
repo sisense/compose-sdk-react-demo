@@ -6,6 +6,7 @@ import { FunnelChart } from "@sisense/sdk-ui";
 import CodeBlock from "../components/CodeBlock";
 import SubTitle from "../components/SubTitle";
 import Paragraph from "../components/Paragraph";
+import Header from "../components/Header";
 
 const dataSet = {
   columns: [
@@ -26,8 +27,8 @@ export default function FunnelChartExample() {
 
   return (
     <CodeHighlight uniqueKey={view}>
-      <article className="my-8" id="funnel">
-        <header className="flex items-baseline">
+      <article className="my-8 w-full" id="funnel">
+      <Header>
           <div className="flex flex-col mr-4 flex-1">
             <SubTitle id="funnel">Funnel chart</SubTitle>
             <Paragraph>
@@ -42,7 +43,7 @@ export default function FunnelChartExample() {
             onChange={setView}
             labels={["Preview", "React"]}
           />
-        </header>
+        </Header>
         {view === "Preview" && 
           <FunnelChart dataSet={dataSet}
                        dataOptions={{

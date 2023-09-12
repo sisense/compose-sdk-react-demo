@@ -7,14 +7,15 @@ import { exampleData } from "./data";
 import CodeBlock from "../components/CodeBlock";
 import SubTitle from "../components/SubTitle";
 import Paragraph from "../components/Paragraph";
+import Header from "../components/Header";
 
 export default function BarChartExample() {
   const [view, setView] = useState("Preview");
 
   return (
     <CodeHighlight uniqueKey={view}>
-      <article className="my-8" id="bar">
-        <header className="flex items-baseline">
+      <article className="my-8 w-full" id="bar">
+        <Header>
           <div className="flex flex-col mr-4 flex-1">
             <SubTitle id="bar">Bar chart</SubTitle>
             <Paragraph>
@@ -30,7 +31,7 @@ export default function BarChartExample() {
             onChange={setView}
             labels={["Preview", "React"]}
           />
-        </header>
+        </Header>
         {view === "Preview" && (
           <BarChart dataSet={exampleData.data}
             dataOptions={{

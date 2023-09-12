@@ -7,6 +7,7 @@ import CodeBlock from "../components/CodeBlock";
 import SubTitle from "../components/SubTitle";
 import { exampleData } from "./data";
 import Paragraph from "../components/Paragraph";
+import Header from "../components/Header";
 
 const styleOptions = {
   legend: {
@@ -19,8 +20,8 @@ export default function PieChartExample() {
 
   return (
     <CodeHighlight uniqueKey={view}>
-      <article className="my-8" id="Pie">
-        <header className="flex items-baseline">
+      <article className="my-8 w-full" id="Pie">
+      <Header>
           <div className="flex flex-col mr-4 flex-1">
             <SubTitle id="Pie">Pie chart</SubTitle>
             <Paragraph>
@@ -35,7 +36,7 @@ export default function PieChartExample() {
             onChange={setView}
             labels={["Preview", "React"]}
           />
-        </header>
+        </Header>
         {view === "Preview" && 
           <PieChart dataSet={exampleData.data}
             dataOptions={{

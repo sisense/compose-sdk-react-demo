@@ -7,6 +7,7 @@ import { exampleData } from "./data";
 import CodeBlock from "../components/CodeBlock";
 import SubTitle from "../components/SubTitle";
 import Paragraph from "../components/Paragraph";
+import Header from "../components/Header";
 
 const styleOptions = {
   subtype: 'area/stacked',
@@ -39,8 +40,8 @@ export default function AreaChartExample() {
 
   return (
     <CodeHighlight uniqueKey={view}>
-      <article className="my-8" id="area">
-      <header className="flex items-baseline">
+      <article className="my-8 w-full" id="area">
+      <Header>
           <div className="flex flex-col mr-4 flex-1">
             <SubTitle id="area">Area chart</SubTitle>
             <Paragraph>
@@ -56,7 +57,7 @@ export default function AreaChartExample() {
               onChange={setView}
               labels={["Preview", "React"]}
             />
-        </header>
+        </Header>
         {view === "Preview" && (
           <AreaChart dataSet={exampleData.data}
             dataOptions={{

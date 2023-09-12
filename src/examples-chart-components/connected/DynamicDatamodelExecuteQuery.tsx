@@ -18,6 +18,7 @@ import {
 import CodeBlock from "../../components/CodeBlock";
 import SubTitle from "../../components/SubTitle";
 import Paragraph from "../../components/Paragraph";
+import Header from "../../components/Header";
 
 export default function DynamicDatamodelExecuteQuery() {
   const [view, setView] = useState("Preview");
@@ -42,7 +43,7 @@ export default function DynamicDatamodelExecuteQuery() {
   }, [view]);
   return (
     <article className="my-8">
-      <header className="flex items-baseline">
+      <Header>
         <div className="flex flex-col mr-4  flex-1">
           <SubTitle id="dynamic-ExecuteQuery">
             Dynamic Data Model connected to chart using ExecuteQuery
@@ -56,7 +57,7 @@ export default function DynamicDatamodelExecuteQuery() {
           onChange={setView}
           labels={["Preview", "React"]}
         />
-      </header>
+      </Header>
 
       {view === "Preview" && (
         <ExecuteQuery

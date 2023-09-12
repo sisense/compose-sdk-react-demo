@@ -9,20 +9,43 @@ import {
   ChartBarSquareIcon,
   QuestionMarkCircleIcon,
 } from "@heroicons/react/24/solid";
-export default function SidebarNavigation() {
+import HamburgerIcon from "./icons/Hamburger";
+
+interface Props {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export default function SidebarNavigation(props: Props) {
+  const { isOpen } = props;
+
+  const handleNavigationOnClick:React.MouseEventHandler<HTMLUListElement> = () => {
+    props.onClose()
+  }
   return (
-    <div className="w-64">
+    <div
+      className={`fixed top-0 z-10 md:static   ${isOpen ? "w-full" : "w-0"} md:w-64`}
+    >
+      <div
+        onClick={props.onClose}
+        className="md:hidden absolute top-4 right-5 cursor-pointer"
+      >
+        <HamburgerIcon />
+      </div>
       <nav className=" overflow-auto flex flex-col bg-black  h-screen  tex-gray-900">
         <div className="flex flex-col items-center justify-center mt-8">
           <div className="w-1/2">
             <img src={Logo} className="mx-auto w-131 h32 rounded-full" />
           </div>
           <div className="mt-10 w-1/2">
-            <img src={ComposeSDKLogo} className="mx-auto w-131 h32 rounded-full" />
+            <img
+              src={ComposeSDKLogo}
+              className="mx-auto w-131 h32 rounded-full"
+            />
           </div>
         </div>
-        <div className="mt-10 mb-4">
-          <ul>
+        <div className="mt-10 mb-4 flex justify-center md:block md:justify-start">
+          <ul onClick={handleNavigationOnClick}>
             <NavigationItem
               href="/"
               text="Getting Started"

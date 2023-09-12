@@ -8,6 +8,7 @@ import { ButtonGroup } from "../components/ButtonGroup";
 import CodeBlock from "../components/CodeBlock";
 import * as DM from "../examples-chart-components/connected/sample-ecommerce";
 import { filters, measures } from "@sisense/sdk-data";
+import Header from "../components/Header";
 
 export default function TopRankFilter() {
   const [view, setView] = useState("Preview");
@@ -22,7 +23,7 @@ export default function TopRankFilter() {
   return (
     <CodeHighlight uniqueKey={view}>
       <article className="my-8" id="area">
-        <header className="flex items-baseline">
+      <Header>
           <div className="flex flex-col mr-4 flex-1">
             <SubTitle id="area">Top Ranking Filter</SubTitle>
           </div>
@@ -31,7 +32,7 @@ export default function TopRankFilter() {
             onChange={setView}
             labels={["Preview", "React"]}
           />
-        </header>
+        </Header>
         {view === "Preview" && (
           <div className="grid gap-4">
             <div>

@@ -8,6 +8,7 @@ import { ButtonGroup } from "../components/ButtonGroup";
 import CodeBlock from "../components/CodeBlock";
 import * as DM from "../examples-chart-components/connected/sample-ecommerce";
 import { filters, measures } from "@sisense/sdk-data";
+import Header from "../components/Header";
 
 export default function DateRangeFilter() {
   const [view, setView] = useState("Preview");
@@ -18,7 +19,7 @@ export default function DateRangeFilter() {
   return (
     <CodeHighlight uniqueKey={view}>
       <article className="my-8" id="area">
-        <header className="flex items-baseline">
+      <Header>
           <div className="flex flex-col mr-4 flex-1">
             <SubTitle id="area">Date Range Filter</SubTitle>
           </div>
@@ -27,7 +28,7 @@ export default function DateRangeFilter() {
             onChange={setView}
             labels={["Preview", "React"]}
           />
-        </header>
+        </Header>
         {view === "Preview" && (
           <div className="grid gap-4">
             <DateRangeFilterTile
@@ -66,6 +67,7 @@ export default function App() {
     <>
       <DateRangeFilterTile
         title="Date Range"
+        dataSource={DM.DataSource}
         attribute={DM.Commerce.Date.Days}
         filter={dateRangeFilter}
         onChange={(filter) => {
@@ -76,7 +78,7 @@ export default function App() {
         dataSet={DM.DataSource}
         chartType={"line"}
         dataOptions={{
-          category: [DM.Commerce.Date.Years],
+          category: [DM.Commerce.Date.Months],
           value: [measures.sum(DM.Commerce.Revenue, 'Revenue')],
           breakBy: [DM.Commerce.Gender]
         }}

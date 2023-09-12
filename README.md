@@ -1,4 +1,4 @@
-# Compose SDK Public Demo Project
+# Compose SDK React Demo
 
 This project is built with TypeScript and Vite. It uses Yarn 3.x as the package manager. Vite is a build tool that offers fast and optimized development and production workflows.
 
@@ -6,7 +6,7 @@ This project is built with TypeScript and Vite. It uses Yarn 3.x as the package 
 
 Before you begin, make sure you have the following installed on your system:
 
-- [Node.js](https://nodejs.org) (version 16 or higher)
+- [Node.js](https://nodejs.org) (version 16 or higher, 16.17.1 tested)
 - [Yarn](https://yarnpkg.com) (version 3.x)
 
 ## Setup GitHub personal access token (classic)
@@ -14,17 +14,15 @@ Before you begin, make sure you have the following installed on your system:
 GitHub requires a (classic) personal access token (with `read:packages` permission) 
 to access NPM packages in GitHub Packages Registry (GPR) — see the doc [here](https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages#about-scopes-and-permissions-for-package-registries).
 
-Any developers working with the repo can easily generate an access token in their GitHub account and use it.
-Once you have that token value, from the root directory, run the following command:
+Any developers working with this repo can easily generate an access token in their GitHub account and use it.
+Once you have that token value, from the root directory of the repo, run the following command:
 
 ```
 yarn config set npmAuthToken [TOKEN_VALUE] -H
 ```
 
-This will put the token in `.yarnrc.yml` in your home directory. 
-This way, the `.yarnrc.yml` file in the will not be updated. 
-Also, make sure you run the command above from the root directory, 
-in which the correct yarn version (3.2.3) is set, instead of yarn 1.x.
+This will put the token in `.yarnrc.yml` in __your home directory__.
+This way, the `.yarnrc.yml` file in this repo will not be updated.
 
 This is a temporary solution, which will be no longer needed once our packages are in public NPM repository.
 
@@ -62,29 +60,10 @@ VITE_APP_SISENSE_USERNAME=
 VITE_APP_SISENSE_PASSWORD=
 ```
 
-## Getting Started
-
-1. Clone this repository to your local machine:
-
-```bash
-git clone git@gitlab.sisense.com:compose-sdk/compose-sdk-react-demo.git
-```
-
-2. Navigate to the project directory:
-
-```bash
-cd compose-sdk-react-demo
-```
-
-3. Install the dependencies using Yarn:
-
-```bash
-yarn install
-```
-
 ## Available Scripts
 
-In the project directory, you can run the following scripts using Yarn:
+In the project directory, after running `yarn install` to install the dependencies,
+you can run the following scripts using Yarn:
 
 ### Development Mode
 
