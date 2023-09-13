@@ -1,4 +1,4 @@
-import ChartsPage from "../ChartComponents";
+import ChartsPage from "../examples-chart-components/ChartComponents";
 import Article from "../components/Article";
 import CodeBlock from "../components/CodeBlock";
 import CodeHighlight from "../components/CodeHighlight";

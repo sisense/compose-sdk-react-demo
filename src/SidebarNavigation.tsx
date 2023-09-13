@@ -1,7 +1,7 @@
-import NavigationItem from "./NavigationItem";
-import DashboardIcon from "./icons/DashboardIcon";
-import Logo from "../assets/sisense-logo.svg";
-import ComposeSDKLogo from "../assets/compose-sdk-logo.svg";
+import NavigationItem from "./components/NavigationItem";
+import DashboardIcon from "./components/icons/DashboardIcon";
+import Logo from "./assets/sisense-logo.svg";
+import ComposeSDKLogo from "./assets/compose-sdk-logo.svg";
 
 import {
   FunnelIcon,
@@ -9,7 +9,11 @@ import {
   ChartBarSquareIcon,
   QuestionMarkCircleIcon,
 } from "@heroicons/react/24/solid";
+<<<<<<< ours
 import HamburgerIcon from "./icons/Hamburger";
+=======
+import HamburgerIcon from "./components/icons/Hamburger";
+>>>>>>> theirs
 
 interface Props {
   isOpen: boolean;

@@ -1,5 +1,5 @@
 import ScrollToHashElement from "./components/ScrollToHashElement";
-import SidebarNavigation from "./components/SidebarNavigation";
+import SidebarNavigation from "./SidebarNavigation";
 import { Outlet } from "react-router-dom";
 import HamburgerIcon from "./components/icons/Hamburger";
 import { useState } from "react";

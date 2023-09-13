@@ -18,8 +18,6 @@ const sisenseContextProviderArgs = () => {
     url: import.meta.env.VITE_APP_SISENSE_URL,
     defaultDataSource: "Sample ECommerce",
   }
-  const username = import.meta.env.VITE_APP_SISENSE_USERNAME;
-  const password = import.meta.env.VITE_APP_SISENSE_PASSWORD;
   const wat = import.meta.env.VITE_APP_SISENSE_WAT;
   const token = import.meta.env.VITE_APP_SISENSE_API_TOKEN;
   const ssoEnabled = import.meta.env.VITE_APP_SISENSE_SSO_ENABLED;
@@ -30,15 +28,12 @@ const sisenseContextProviderArgs = () => {
     return { ...baseOptions, wat }
   } else if (token) {
     return { ...baseOptions, token }
-  } else if (username && password) {
-    return { ...baseOptions, username, password }
   } else {
     return baseOptions;
   }
 };
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
     <SisenseContextProvider
       {...sisenseContextProviderArgs()}
     >
@@ -62,5 +57,4 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         </BrowserRouter>
       </ThemeProvider>
     </SisenseContextProvider>
-  </React.StrictMode>
 );

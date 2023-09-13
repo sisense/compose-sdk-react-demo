@@ -21,6 +21,11 @@ last_published_tag=$(git describe --tags --abbrev=0 --always)
 # Reset your local external-main branch to the specified ref and stage changes.
 git diff ${last_published_tag} ${1:-'origin/master'} --binary | git apply --whitespace=fix
 
+# Remove sensitive or irrelevant information
+rm -Rf ./src/internal
+mv ./src/main_public.tsx ./src/main.tsx
+mv ./src/SidebarNavigation_public.tsx ./src/SidebarNavigation.tsx
+
 # need to regenerate the yarn.lock file after all the changes
 yarn install
 

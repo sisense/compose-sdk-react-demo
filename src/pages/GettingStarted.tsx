@@ -59,12 +59,11 @@ export default function GettingStarted() {
 
       <Paragraph>
         Inside your <code>main.tsx</code>, or if you have a different entry file,
-        add <code>SisenseContextProvider</code> to authenticate your app. For development, you can use a username and password for authentication. In 
-        production it is recommended to use SSO, Web Access Token, or API token for 
-        secure authentication.
+        add <code>SisenseContextProvider</code> to authenticate your app. Use SSO,
+        Web Access Token, or API token for secure authentication.
       </Paragraph>
       <Paragraph>
-        All code snippets in this demo application are assumed to be a child 
+        All code snippets in this demo application are assumed to be a child
         of SisenseContextProvider.
       </Paragraph>
       <CodeBlock language="tsx">
@@ -72,7 +71,7 @@ export default function GettingStarted() {
   <React.StrictMode>
     <SisenseContextProvider
       url={url}
-      // username/password or SSO or WAT or API token
+      // API token, SSO or Web Access Token 
       defaultDataSource={'Sample ECommerce'}
     >
       <App />
@@ -100,7 +99,7 @@ export default function GettingStarted() {
         generated with the following command.
       </Paragraph>
       <CodeBlock language="bash" showLineNumber={false}>
-        npx run sdk-cli get-data-model --username {`<username>`} --output
+        npx sdk-cli get-data-model --username {`<username>`} --output
         sample-ecommerce-generated.ts --dataSource "Sample ECommerce" --url http://
         {`<instance IP>`}{`[:<port>]`}
       </CodeBlock>

@@ -21,7 +21,7 @@ Once you have that token value, from the root directory of the repo, run the fol
 yarn config set npmAuthToken [TOKEN_VALUE] -H
 ```
 
-This will put the token in `.yarnrc.yml` in __your home directory__.
+This will put the token in `.yarnrc.yml` in __your home directory__. 
 This way, the `.yarnrc.yml` file in this repo will not be updated.
 
 This is a temporary solution, which will be no longer needed once our packages are in public NPM repository.
@@ -37,7 +37,7 @@ Add http://localhost:5173 to your Sisense instance CORS Allowed Origins configur
 
 Create a `.env.local` file based on `.env.local.example` and add your Sisense instance url and an authentication method. Inside `main.tsx`, the specified instance url and authentication are passed to the `SisenseContextProvider` component.
 
-It is recommended to use SSO, Web Access Token, or API token for authentication when using a production Sisense instance. Username and password are avalabile for development when working against non-production environments.
+It is recommended to use SSO, Web Access Token, or API token for authentication when using a production Sisense instance.
 
 ```bash
 # Specify the sisense instance URL.
@@ -54,15 +54,11 @@ VITE_APP_SISENSE_API_TOKEN=
 
 ## SSO Enabled
 VITE_APP_SISENSE_SSO_ENABLED=
-
-## For development on non-production environments
-VITE_APP_SISENSE_USERNAME=
-VITE_APP_SISENSE_PASSWORD=
 ```
 
 ## Available Scripts
 
-In the project directory, after running `yarn install` to install the dependencies,
+In the project directory, after running `yarn install` to install the dependencies, 
 you can run the following scripts using Yarn:
 
 ### Development Mode
