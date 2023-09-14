@@ -9,11 +9,7 @@ import {
   ChartBarSquareIcon,
   QuestionMarkCircleIcon,
 } from "@heroicons/react/24/solid";
-<<<<<<< ours
-import HamburgerIcon from "./icons/Hamburger";
-=======
 import HamburgerIcon from "./components/icons/Hamburger";
->>>>>>> theirs
 
 interface Props {
   isOpen: boolean;
