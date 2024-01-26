@@ -1,44 +1,42 @@
-import { useState } from "react";
-import CodeHighlight from "../components/CodeHighlight";
+import { useState } from 'react';
+import CodeHighlight from '../components/CodeHighlight';
 
-import { ButtonGroup } from "../components/ButtonGroup";
-import { PolarChart } from "@sisense/sdk-ui";
-import CodeBlock from "../components/CodeBlock";
-import SubTitle from "../components/SubTitle";
-import Paragraph from "../components/Paragraph";
-import { exampleData } from "./data";
-import Header from "../components/Header";
+import { ButtonGroup } from '../components/ButtonGroup';
+import { PolarChart } from '@sisense/sdk-ui';
+import CodeBlock from '../components/CodeBlock';
+import SubTitle from '../components/SubTitle';
+import Paragraph from '../components/Paragraph';
+import { exampleData } from './data';
+import Header from '../components/Header';
 
 export default function PolarChartExample() {
-  const [view, setView] = useState("Preview");
+  const [view, setView] = useState('Preview');
 
   return (
     <CodeHighlight uniqueKey={view}>
       <article className="my-8 w-full" id="Polar">
-      <Header>
+        <Header>
           <div className="flex flex-col mr-4 flex-1">
             <SubTitle id="Polar">Polar chart</SubTitle>
             <Paragraph>
-              Polar charts are used to show the proportion of a whole. Each slice
-              of pie represents a category of data and the size of the slice
-              shows the percentage of that category relative to the whole.
+              Polar charts are used to show the proportion of a whole. Each slice of pie represents
+              a category of data and the size of the slice shows the percentage of that category
+              relative to the whole.
             </Paragraph>
           </div>
-            <ButtonGroup
-              selected={view}
-              onChange={setView}
-              labels={["Preview", "React"]}
-            />
+          <ButtonGroup selected={view} onChange={setView} labels={['Preview', 'React']} />
         </Header>
-        {view === "Preview" &&
-          <PolarChart dataSet={exampleData.data}
+        {view === 'Preview' && (
+          <PolarChart
+            dataSet={exampleData.data}
             dataOptions={{
               category: [exampleData.years],
               value: [exampleData.quantity, exampleData.units],
               breakBy: [],
             }}
-          />}
-        {view === "React" && (
+          />
+        )}
+        {view === 'React' && (
           <CodeBlock language="tsx">
             {`import React from "react";
 import { PolarChart } from "@sisense/sdk-ui";

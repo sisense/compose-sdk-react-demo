@@ -1,71 +1,68 @@
-import { useState } from "react";
-import CodeHighlight from "../components/CodeHighlight";
-import { ButtonGroup } from "../components/ButtonGroup";
-import { exampleData } from "./data";
-import { ColumnChart, StackableStyleOptions } from "@sisense/sdk-ui";
-import CodeBlock from "../components/CodeBlock";
-import SubTitle from "../components/SubTitle";
-import Paragraph from "../components/Paragraph";
-import Header from "../components/Header";
+import { useState } from 'react';
+import CodeHighlight from '../components/CodeHighlight';
+import { ButtonGroup } from '../components/ButtonGroup';
+import { exampleData } from './data';
+import { ColumnChart, StackableStyleOptions } from '@sisense/sdk-ui';
+import CodeBlock from '../components/CodeBlock';
+import SubTitle from '../components/SubTitle';
+import Paragraph from '../components/Paragraph';
+import Header from '../components/Header';
 
 const styleOptions = {
   legend: {
-    position: "right",
+    position: 'right',
   },
   xAxis: {
     title: {
       enabled: true,
-      text: "Year",
+      text: 'Year',
     },
   },
   yAxis: {
     title: {
       enabled: true,
-      text: "Quantity",
+      text: 'Quantity',
     },
   },
   y2Axis: {
     title: {
       enabled: true,
-      text: "Units",
+      text: 'Units',
     },
     enabled: true,
   },
 } as StackableStyleOptions;
 
 export default function ColumnChartExample() {
-  const [view, setView] = useState("Preview");
+  const [view, setView] = useState('Preview');
 
   return (
     <CodeHighlight uniqueKey={view}>
       <article className="my-8 w-full" id="column">
-      <Header>
+        <Header>
           <div className="flex flex-col mr-4 flex-1">
             <SubTitle id="column">Column chart</SubTitle>
             <Paragraph>
-              A column chart is a type of chart that uses vertical bars to
-              represent data values. Similar to a bar chart, the length of each
-              column corresponds to the value it represents. In this example all
-              axes have been labeled and the legend has been placed on the right
-              using chart style options.
+              A column chart is a type of chart that uses vertical bars to represent data values.
+              Similar to a bar chart, the length of each column corresponds to the value it
+              represents. In this example all axes have been labeled and the legend has been placed
+              on the right using chart style options.
             </Paragraph>
           </div>
-          <ButtonGroup
-            selected={view}
-            onChange={setView}
-            labels={["Preview", "React"]}
-          />
+          <ButtonGroup selected={view} onChange={setView} labels={['Preview', 'React']} />
         </Header>
-        {view === "Preview" &&           
-          <ColumnChart dataSet={exampleData.data}
+        {view === 'Preview' && (
+          <ColumnChart
+            dataSet={exampleData.data}
             dataOptions={{
               category: [exampleData.years],
-              value: [exampleData.quantity, { column: exampleData.units, showOnRightAxis: true} ],
+              value: [exampleData.quantity, { column: exampleData.units, showOnRightAxis: true }],
               breakBy: [],
             }}
             styleOptions={styleOptions}
-          />}
-        {view === "React" && (
+          />
+        )}
+        {view === 'React' && (
           <CodeBlock language="tsx">
             {`import React from "react";
 import { ColumnChart, StackableStyleOptions } from "@sisense/sdk-ui";

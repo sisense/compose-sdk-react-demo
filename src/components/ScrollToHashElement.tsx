@@ -1,12 +1,12 @@
-import { useMemo, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useMemo, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const ScrollToHashElement = () => {
   const location = useLocation();
 
   const hashElement = useMemo(() => {
     const hash = location.hash;
-    console.log(hash)
+    console.log(hash);
     if (hash) {
       console.log(hash);
       const element = document.querySelector(hash);
@@ -21,8 +21,8 @@ const ScrollToHashElement = () => {
     const scrollToElement = () => {
       if (hashElement) {
         hashElement.scrollIntoView({
-          behavior: "smooth",
-          inline: "nearest",
+          behavior: 'smooth',
+          inline: 'nearest',
         });
       }
     };

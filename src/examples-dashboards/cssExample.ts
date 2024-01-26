@@ -35,4 +35,4 @@ export const cssExample = `.dashboard-container {
   .c5 {
     grid-area: c5;
   }
-`
+`;

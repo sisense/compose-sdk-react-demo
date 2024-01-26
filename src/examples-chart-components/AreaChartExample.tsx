@@ -1,75 +1,73 @@
-import { useState } from "react";
-import CodeHighlight from "../components/CodeHighlight";
+import { useState } from 'react';
+import CodeHighlight from '../components/CodeHighlight';
 
-import { ButtonGroup } from "../components/ButtonGroup";
-import { AreaChart, AreaStyleOptions } from "@sisense/sdk-ui";
-import { exampleData } from "./data";
-import CodeBlock from "../components/CodeBlock";
-import SubTitle from "../components/SubTitle";
-import Paragraph from "../components/Paragraph";
-import Header from "../components/Header";
+import { ButtonGroup } from '../components/ButtonGroup';
+import { AreaChart, AreaStyleOptions } from '@sisense/sdk-ui';
+import { exampleData } from './data';
+import CodeBlock from '../components/CodeBlock';
+import SubTitle from '../components/SubTitle';
+import Paragraph from '../components/Paragraph';
+import Header from '../components/Header';
 
 const styleOptions = {
   subtype: 'area/stacked',
   legend: {
-    position: "top",
+    position: 'top',
   },
   xAxis: {
     title: {
       enabled: true,
-      text: "Year",
+      text: 'Year',
     },
   },
   yAxis: {
     title: {
       enabled: true,
-      text: "Quantity",
+      text: 'Quantity',
     },
   },
   y2Axis: {
     title: {
       enabled: true,
-      text: "Units",
+      text: 'Units',
     },
     enabled: true,
   },
 } as AreaStyleOptions;
 
 export default function AreaChartExample() {
-  const [view, setView] = useState("Preview");
+  const [view, setView] = useState('Preview');
 
   return (
     <CodeHighlight uniqueKey={view}>
       <article className="my-8 w-full" id="area">
-      <Header>
+        <Header>
           <div className="flex flex-col mr-4 flex-1">
             <SubTitle id="area">Area chart</SubTitle>
             <Paragraph>
-              An area chart is a line chart with the area between the line and
-              the x-axis filled with color. It is used to represent accumulated
-              totals using numbers or percentages over time. This example specifies
-              a color for each measure and uses the subtype style option to stack
-              the two areas.
+              An area chart is a line chart with the area between the line and the x-axis filled
+              with color. It is used to represent accumulated totals using numbers or percentages
+              over time. This example specifies a color for each measure and uses the subtype style
+              option to stack the two areas.
             </Paragraph>
           </div>
-            <ButtonGroup
-              selected={view}
-              onChange={setView}
-              labels={["Preview", "React"]}
-            />
+          <ButtonGroup selected={view} onChange={setView} labels={['Preview', 'React']} />
         </Header>
-        {view === "Preview" && (
-          <AreaChart dataSet={exampleData.data}
+        {view === 'Preview' && (
+          <AreaChart
+            dataSet={exampleData.data}
             dataOptions={{
               category: [exampleData.years],
-              value: [{...exampleData.quantity, color: 'lightsteelblue'},
-                {...exampleData.units, color: 'lightslategray'}],  
+              value: [
+                { ...exampleData.quantity, color: 'lightsteelblue' },
+                { ...exampleData.units, color: 'lightslategray' },
+              ],
               breakBy: [],
             }}
             styleOptions={styleOptions}
           />
         )}
-        {view === "React" && (
+        {view === 'React' && (
           <CodeBlock language="tsx">
             {`import React from "react";
 import { AreaChart, AreaStyleOptions } from "@sisense/sdk-ui";

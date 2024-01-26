@@ -1,13 +1,13 @@
-import BarChartExample from "./BarChartExample";
-import ColumnChartExample from "./ColumnChartExample";
-import LineChartExample from "./LineChartExample";
-import AreaChartExample from "./AreaChartExample";
-import PieChartExample from "./PieChartExample";
-import IndicatorChartExample from "./IndicatorChartExample";
-import PolarChartExample from "./PolarChartExample";
-import FunnelChartExample from "./FunnelChartExample";
-import ScatterChartExample from "./ScatterChartExample";
-import Divider from "../components/Divider";
+import BarChartExample from './BarChartExample';
+import ColumnChartExample from './ColumnChartExample';
+import LineChartExample from './LineChartExample';
+import AreaChartExample from './AreaChartExample';
+import PieChartExample from './PieChartExample';
+import IndicatorChartExample from './IndicatorChartExample';
+import PolarChartExample from './PolarChartExample';
+import FunnelChartExample from './FunnelChartExample';
+import ScatterChartExample from './ScatterChartExample';
+import Divider from '../components/Divider';
 
 function ChartComponents() {
   return (

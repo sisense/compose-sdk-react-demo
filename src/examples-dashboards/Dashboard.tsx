@@ -1,12 +1,12 @@
-import CodeHighlight from "../components/CodeHighlight";
-import SubTitle from "../components/SubTitle";
-import { ButtonGroup } from "../components/ButtonGroup";
-import CodeBlock from "../components/CodeBlock";
-import { cssExample } from "./cssExample";
-import { dashboardCodeExample } from "./dashboardCodeExample";
+import CodeHighlight from '../components/CodeHighlight';
+import SubTitle from '../components/SubTitle';
+import { ButtonGroup } from '../components/ButtonGroup';
+import CodeBlock from '../components/CodeBlock';
+import { cssExample } from './cssExample';
+import { dashboardCodeExample } from './dashboardCodeExample';
 
 // codeExample
-import { useMemo, useState } from "react";
+import { useMemo, useState } from 'react';
 import {
   IndicatorChart,
   NumberFormatConfig,
@@ -16,40 +16,36 @@ import {
   ChartWidget,
   StackableStyleOptions,
   LineStyleOptions,
-} from "@sisense/sdk-ui";
-import "./index.css";
-import { Filter, filters, measures } from "@sisense/sdk-data";
-import * as DM from "../examples-chart-components/connected/sample-ecommerce";
-import Header from "../components/Header";
+} from '@sisense/sdk-ui';
+import './index.css';
+import { Filter, filterFactory, measureFactory } from '@sisense/sdk-data';
+import * as DM from '../examples-chart-components/connected/sample-ecommerce';
+import Header from '../components/Header';
 
 const lineChartStyleOptions: LineStyleOptions = {
-  subtype: "line/spline",
-  lineWidth: { width: "bold" },
+  subtype: 'line/spline',
+  lineWidth: { width: 'bold' },
   yAxis: {
-    title: { enabled: true, text: "SALES" },
+    title: { enabled: true, text: 'SALES' },
   },
   y2Axis: {
     enabled: true,
-    title: { enabled: true, text: "QUANTITY" },
+    title: { enabled: true, text: 'QUANTITY' },
   },
   markers: {
     enabled: true,
-    fill: "hollow",
+    fill: 'hollow',
   },
 };
 
 const seriesToColorMap = {
-  Female: "#00cee6",
-  Male: "#9b9bd7",
-  Unspecified: "#6eda55",
+  Female: '#00cee6',
+  Male: '#9b9bd7',
+  Unspecified: '#6eda55',
 };
 
 const drilldownOptions = {
-  drilldownCategories: [
-    DM.Commerce.AgeRange,
-    DM.Commerce.Gender,
-    DM.Commerce.Condition,
-  ],
+  drilldownDimensions: [DM.Commerce.AgeRange, DM.Commerce.Gender, DM.Commerce.Condition],
 };
 
 const scatterStyleOptions: ScatterStyleOptions = {
@@ -62,7 +58,7 @@ const scatterStyleOptions: ScatterStyleOptions = {
 };
 
 const numberFormat: NumberFormatConfig = {
-  name: "Numbers",
+  name: 'Numbers',
   decimalScale: 2,
   trillion: true,
   billion: true,
@@ -70,13 +66,10 @@ const numberFormat: NumberFormatConfig = {
   kilo: true,
   thousandSeparator: true,
   prefix: false,
-  symbol: "$",
+  symbol: '$',
 };
 
-const getIndicatorStyleOptions = (
-  title: string,
-  secondaryTitle = ""
-): IndicatorStyleOptions => {
+const getIndicatorStyleOptions = (title: string, secondaryTitle = ''): IndicatorStyleOptions => {
   return {
     indicatorComponents: {
       title: {
@@ -93,19 +86,19 @@ const getIndicatorStyleOptions = (
         shouldBeShown: true,
       },
     },
-    subtype: "indicator/gauge",
+    subtype: 'indicator/gauge',
     skin: 1,
   };
 };
 
 const barStyleOptions: StackableStyleOptions = {
-  subtype: "bar/stacked",
+  subtype: 'bar/stacked',
 };
 
 export default function Dashboard() {
-  const [view, setView] = useState("Preview");
+  const [view, setView] = useState('Preview');
   const [yearFilter, setYearFilter] = useState<Filter | null>(
-    filters.members(DM.Commerce.Date.Years, ["2013-01-01T00:00:00"])
+    filterFactory.members(DM.Commerce.Date.Years, ['2013-01-01T00:00:00']),
   );
   const [countryFilter, setCountryFilter] = useState<Filter | null>(null);
 
@@ -114,24 +107,23 @@ export default function Dashboard() {
   }, [yearFilter, countryFilter]);
 
   const pieActiveFilters = useMemo<Filter[]>(() => {
-    return [
-      ...activeFilters,
-      filters.members(DM.Commerce.Gender, ["Male", "Female"]),
-    ].filter((f) => !!f);
+    return [...activeFilters, filterFactory.members(DM.Commerce.Gender, ['Male', 'Female'])].filter(
+      (f) => !!f,
+    );
   }, [activeFilters]);
 
   const barActiveFilters = useMemo<Filter[]>(() => {
     return [
       ...activeFilters,
-      filters.topRanking(DM.Category.Category, DM.Measures.SumRevenue, 3),
+      filterFactory.topRanking(DM.Category.Category, DM.Measures.SumRevenue, 3),
     ].filter((f) => !!f);
   }, [activeFilters]);
 
   const scatterActiveFilters = useMemo<Filter[]>(() => {
     return [
       ...activeFilters,
-      filters.members(DM.Commerce.Gender, ["Male", "Female"]),
-      filters.topRanking(DM.Category.Category, DM.Measures.SumRevenue, 10),
+      filterFactory.members(DM.Commerce.Gender, ['Male', 'Female']),
+      filterFactory.topRanking(DM.Category.Category, DM.Measures.SumRevenue, 10),
     ].filter((f) => !!f);
   }, [activeFilters]);
 
@@ -140,7 +132,7 @@ export default function Dashboard() {
       <div className="xl:grid  xl:grid-cols-dashboard xl:grid-rows-dashboard my-4 p-2  shadow-2xl">
         <div
           id="filters"
-          className="border-b-2 xl:col-start-10 xl:col-end-10 xl:row-span-4 p-2 xl:border-2"
+          className="border-b-2 xl:col-start-10 xl:col-end-10 xl:row-span-4 py-2 px-3 xl:border-2"
         >
           <h2 className="text-xl mb-2">Filters</h2>
           <div className="grid justify-center xl:grid-cols-1 gap-2">
@@ -169,11 +161,11 @@ export default function Dashboard() {
                   },
                 ],
                 secondary: [],
-                min: [measures.constant(0)],
-                max: [measures.constant(125000000)],
+                min: [measureFactory.constant(0)],
+                max: [measureFactory.constant(125000000)],
               }}
               filters={activeFilters}
-              styleOptions={getIndicatorStyleOptions("Total Revenue")}
+              styleOptions={getIndicatorStyleOptions('Total Revenue')}
             />
           </div>
           <div className="h-[200px] border-b-2">
@@ -181,49 +173,49 @@ export default function Dashboard() {
               dataOptions={{
                 value: [DM.Measures.Quantity],
                 secondary: [],
-                min: [measures.constant(0)],
-                max: [measures.constant(250000)],
+                min: [measureFactory.constant(0)],
+                max: [measureFactory.constant(250000)],
               }}
               filters={activeFilters}
-              styleOptions={getIndicatorStyleOptions("Total Units Sold")}
+              styleOptions={getIndicatorStyleOptions('Total Units Sold')}
             />
           </div>
           <div className="h-[200px] border-b-2">
             <IndicatorChart
               dataOptions={{
-                value: [measures.countDistinct(DM.Commerce.VisitID)],
+                value: [measureFactory.countDistinct(DM.Commerce.VisitID)],
                 secondary: [],
-                min: [measures.constant(0)],
-                max: [measures.constant(100000)],
+                min: [measureFactory.constant(0)],
+                max: [measureFactory.constant(100000)],
               }}
               filters={activeFilters}
-              styleOptions={getIndicatorStyleOptions("Total Sales")}
+              styleOptions={getIndicatorStyleOptions('Total Sales')}
             />
           </div>
           <div className="h-[200px]">
             <IndicatorChart
               dataOptions={{
-                value: [measures.countDistinct(DM.Brand.BrandID)],
+                value: [measureFactory.countDistinct(DM.Brand.BrandID)],
                 secondary: [],
-                min: [measures.constant(0)],
-                max: [measures.constant(2500)],
+                min: [measureFactory.constant(0)],
+                max: [measureFactory.constant(2500)],
               }}
               filters={activeFilters}
-              styleOptions={getIndicatorStyleOptions("Total Brands")}
+              styleOptions={getIndicatorStyleOptions('Total Brands')}
             />
           </div>
         </div>
         <div className="border-b-2  c4 xl:col-start-2 xl:col-end-6 xl:row-start-1 xl:row-span-2 xl:border-2">
           <ChartWidget
-            title={"REVENUE vs.UNITS SOLD"}
+            title={'REVENUE vs.UNITS SOLD'}
             dataSource={DM.DataSource}
-            chartType={"line"}
+            chartType={'line'}
             filters={activeFilters}
             dataOptions={{
               category: [
                 {
                   column: DM.Commerce.Date.Months,
-                  dateFormat: "yy-MM",
+                  dateFormat: 'yy-MM',
                 },
               ],
               value: [
@@ -231,22 +223,22 @@ export default function Dashboard() {
                 {
                   column: DM.Measures.Quantity,
                   showOnRightAxis: true,
-                  chartType: "column",
+                  chartType: 'column',
                 },
               ],
               breakBy: [],
             }}
             styleOptions={lineChartStyleOptions}
             drilldownOptions={drilldownOptions}
-            onDataPointClick={(...args) => {
-              console.log("onDataPointClick", ...args);
+            onDataPointClick={(...args: any) => {
+              console.log('onDataPointClick', ...args);
             }}
           />
         </div>
         <div className="border-b-2  c5 xl:col-start-6 xl:col-end-10 xl:row-start-1 xl:row-span-2 xl:border-2">
           <ChartWidget
-            title={"TOP CATEGORIES BY REVENUE, UNITS SOLD AND GENDER"}
-            chartType={"scatter"}
+            title={'TOP CATEGORIES BY REVENUE, UNITS SOLD AND GENDER'}
+            chartType={'scatter'}
             dataSource={DM.DataSource}
             filters={scatterActiveFilters}
             dataOptions={{
@@ -263,8 +255,8 @@ export default function Dashboard() {
 
         <div className="border-b-2  c3 xl:col-start-6 xl:col-end-10 xl:row-start-3 xl:row-span-2 xl:border-2">
           <ChartWidget
-            title={"TOP 3 CATEGORIES BY REVENUE AND AGE"}
-            chartType={"bar"}
+            title={'TOP 3 CATEGORIES BY REVENUE AND AGE'}
+            chartType={'bar'}
             dataSource={DM.DataSource}
             filters={barActiveFilters}
             dataOptions={{
@@ -278,8 +270,8 @@ export default function Dashboard() {
         </div>
         <div className="border-b-2  c1 xl:col-start-2 xl:col-end-4 xl:row-start-3 xl:row-span-2 xl:border-2">
           <ChartWidget
-            title={"GENDER BREAKDOWN"}
-            chartType={"pie"}
+            title={'GENDER BREAKDOWN'}
+            chartType={'pie'}
             dataSource={DM.DataSource}
             filters={pieActiveFilters}
             dataOptions={{
@@ -292,8 +284,8 @@ export default function Dashboard() {
 
         <div className="border-b-2  c2 xl:col-start-4 xl:col-end-6 xl:row-start-3 xl:row-span-2 xl:border-2">
           <ChartWidget
-            title={"AGE RANGE BREAKDOWN"}
-            chartType={"pie"}
+            title={'AGE RANGE BREAKDOWN'}
+            chartType={'pie'}
             dataSource={DM.DataSource}
             filters={pieActiveFilters}
             dataOptions={{
@@ -311,22 +303,14 @@ export default function Dashboard() {
       <article className="my-8" id="Render-dashboard-widgets">
         <Header>
           <div className="flex flex-col mr-4 flex-1">
-            <SubTitle id="Render-dashboard-widgets">
-              Create dashboard using code
-            </SubTitle>
+            <SubTitle id="Render-dashboard-widgets">Create dashboard using code</SubTitle>
           </div>
-          <ButtonGroup
-            selected={view}
-            onChange={setView}
-            labels={["Preview", "React", "CSS"]}
-          />
+          <ButtonGroup selected={view} onChange={setView} labels={['Preview', 'React', 'CSS']} />
         </Header>
-        {view === "CSS" && <CodeBlock language="css">{cssExample}</CodeBlock>}
-        {view === "Preview" && dashboard()}
+        {view === 'CSS' && <CodeBlock language="css">{cssExample}</CodeBlock>}
+        {view === 'Preview' && dashboard()}
 
-        {view === "React" && (
-          <CodeBlock language="tsx">{dashboardCodeExample}</CodeBlock>
-        )}
+        {view === 'React' && <CodeBlock language="tsx">{dashboardCodeExample}</CodeBlock>}
       </article>
     </CodeHighlight>
   );

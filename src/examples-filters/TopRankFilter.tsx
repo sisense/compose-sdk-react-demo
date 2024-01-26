@@ -1,39 +1,41 @@
-import { useMemo, useState } from "react";
-import {
-  Chart,
-} from "@sisense/sdk-ui";
-import CodeHighlight from "../components/CodeHighlight";
-import SubTitle from "../components/SubTitle";
-import { ButtonGroup } from "../components/ButtonGroup";
-import CodeBlock from "../components/CodeBlock";
-import * as DM from "../examples-chart-components/connected/sample-ecommerce";
-import { filters, measures } from "@sisense/sdk-data";
-import Header from "../components/Header";
+import { useMemo, useState } from 'react';
+import { Chart } from '@sisense/sdk-ui';
+import CodeHighlight from '../components/CodeHighlight';
+import SubTitle from '../components/SubTitle';
+import { ButtonGroup } from '../components/ButtonGroup';
+import CodeBlock from '../components/CodeBlock';
+import * as DM from '../examples-chart-components/connected/sample-ecommerce';
+import { filterFactory, measureFactory } from '@sisense/sdk-data';
+import Header from '../components/Header';
 
 export default function TopRankFilter() {
-  const [view, setView] = useState("Preview");
+  const [view, setView] = useState('Preview');
   const [applyFilter, setApplyFilter] = useState(false);
 
-  const activeFilters = useMemo(() => (applyFilter ? [filters.topRanking(
-    DM.Category.Category,
-    measures.sum(DM.Commerce.Revenue),
-    10,
-  )] : []), [applyFilter]);
-  
+  const activeFilters = useMemo(
+    () =>
+      applyFilter
+        ? [
+            filterFactory.topRanking(
+              DM.Category.Category,
+              measureFactory.sum(DM.Commerce.Revenue),
+              10,
+            ),
+          ]
+        : [],
+    [applyFilter],
+  );
+
   return (
     <CodeHighlight uniqueKey={view}>
       <article className="my-8" id="area">
-      <Header>
+        <Header>
           <div className="flex flex-col mr-4 flex-1">
             <SubTitle id="area">Top Ranking Filter</SubTitle>
           </div>
-          <ButtonGroup
-            selected={view}
-            onChange={setView}
-            labels={["Preview", "React"]}
-          />
+          <ButtonGroup selected={view} onChange={setView} labels={['Preview', 'React']} />
         </Header>
-        {view === "Preview" && (
+        {view === 'Preview' && (
           <div className="grid gap-4">
             <div>
               <input
@@ -45,30 +47,34 @@ export default function TopRankFilter() {
             </div>
             <Chart
               dataSet={DM.DataSource}
-              chartType={"bar"}
+              chartType={'bar'}
               dataOptions={{
                 category: [DM.Category.Category],
-                value: [{ column: measures.sum(DM.Commerce.Revenue, 'Revenue'), 
-                          sortType: "sortDesc" }],
-                breakBy: []
+                value: [
+                  {
+                    column: measureFactory.sum(DM.Commerce.Revenue, 'Revenue'),
+                    sortType: 'sortDesc',
+                  },
+                ],
+                breakBy: [],
               }}
               filters={activeFilters}
             />
           </div>
         )}
 
-        {view === "React" && (
+        {view === 'React' && (
           <CodeBlock language="tsx">
             {`import React, { useMemo, useState } from "react";
 import { Chart } from "@sisense/sdk-ui";
-import { filters, measures } from "@sisense/sdk-data";
+import { filterFactory, measureFactory } from "@sisense/sdk-data";
 import * as DM from "./sample-ecommerce";
 
 export default function App() {
   const [applyFilter, setApplyFilter] = useState(false);
-  const activeFilters = useMemo(() => (applyFilter ? [filters.topRanking(
+  const activeFilters = useMemo(() => (applyFilter ? [filterFactory.topRanking(
     DM.Category.Category,
-    measures.sum(DM.Commerce.Revenue),
+    measureFactory.sum(DM.Commerce.Revenue),
     10,
   )] : []), [applyFilter]);
 
@@ -87,7 +93,7 @@ export default function App() {
         chartType={"bar"}
         dataOptions={{
           category: [DM.Category.Category],
-          value: [{ column: measures.sum(DM.Commerce.Revenue, 'Revenue'), 
+          value: [{ column: measureFactory.sum(DM.Commerce.Revenue, 'Revenue'),
             sortType: "sortDesc" }],
           breakBy: []
         }}

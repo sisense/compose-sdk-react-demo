@@ -1,16 +1,16 @@
-import { useState } from "react";
-import { ButtonGroup } from "../components/ButtonGroup";
-import CodeHighlight from "../components/CodeHighlight";
+import { useState } from 'react';
+import { ButtonGroup } from '../components/ButtonGroup';
+import CodeHighlight from '../components/CodeHighlight';
 
-import { BarChart } from "@sisense/sdk-ui";
-import { exampleData } from "./data";
-import CodeBlock from "../components/CodeBlock";
-import SubTitle from "../components/SubTitle";
-import Paragraph from "../components/Paragraph";
-import Header from "../components/Header";
+import { BarChart } from '@sisense/sdk-ui';
+import { exampleData } from './data';
+import CodeBlock from '../components/CodeBlock';
+import SubTitle from '../components/SubTitle';
+import Paragraph from '../components/Paragraph';
+import Header from '../components/Header';
 
 export default function BarChartExample() {
-  const [view, setView] = useState("Preview");
+  const [view, setView] = useState('Preview');
 
   return (
     <CodeHighlight uniqueKey={view}>
@@ -19,21 +19,17 @@ export default function BarChartExample() {
           <div className="flex flex-col mr-4 flex-1">
             <SubTitle id="bar">Bar chart</SubTitle>
             <Paragraph>
-              A bar chart is a type of chart that uses rectangular bars to
-              represent data values. The length or height of each bar
-              corresponds to the value it represents, making it an effective
-              visualization for comparing quantities across different categories
-              or groups.
+              A bar chart is a type of chart that uses rectangular bars to represent data values.
+              The length or height of each bar corresponds to the value it represents, making it an
+              effective visualization for comparing quantities across different categories or
+              groups.
             </Paragraph>
           </div>
-          <ButtonGroup
-            selected={view}
-            onChange={setView}
-            labels={["Preview", "React"]}
-          />
+          <ButtonGroup selected={view} onChange={setView} labels={['Preview', 'React']} />
         </Header>
-        {view === "Preview" && (
-          <BarChart dataSet={exampleData.data}
+        {view === 'Preview' && (
+          <BarChart
+            dataSet={exampleData.data}
             dataOptions={{
               category: [exampleData.years],
               value: [exampleData.quantity, exampleData.units],
@@ -42,7 +38,7 @@ export default function BarChartExample() {
           />
         )}
         {/* <BarChart {...cartesianArgs} /> */}
-        {view === "React" && (
+        {view === 'React' && (
           <CodeBlock language="tsx">
             {`import React from "react";
 import { BarChart } from "@sisense/sdk-ui";

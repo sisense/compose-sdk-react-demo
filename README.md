@@ -9,23 +9,6 @@ Before you begin, make sure you have the following installed on your system:
 - [Node.js](https://nodejs.org) (version 16 or higher, 16.17.1 tested)
 - [Yarn](https://yarnpkg.com) (version 3.x)
 
-## Setup GitHub personal access token (classic)
-
-GitHub requires a (classic) personal access token (with `read:packages` permission) 
-to access NPM packages in GitHub Packages Registry (GPR) — see the doc [here](https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages#about-scopes-and-permissions-for-package-registries).
-
-Any developers working with this repo can easily generate an access token in their GitHub account and use it.
-Once you have that token value, from the root directory of the repo, run the following command:
-
-```
-yarn config set npmAuthToken [TOKEN_VALUE] -H
-```
-
-This will put the token in `.yarnrc.yml` in __your home directory__. 
-This way, the `.yarnrc.yml` file in this repo will not be updated.
-
-This is a temporary solution, which will be no longer needed once our packages are in public NPM repository.
-
 ## Setup Sisense instance
 
 The demo runs queries against the "Sample ECommerce" example data model in your Sisense instance.

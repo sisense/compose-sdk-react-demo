@@ -10,7 +10,7 @@ import {
   LineStyleOptions,
 } from "@sisense/sdk-ui";
 import "./index.css";
-import { Filter, filters, measures } from "@sisense/sdk-data";
+import { Filter, filterFactory, measureFactory } from "@sisense/sdk-data";
 import * as DM from "./sample-ecommerce";
 
 const lineChartStyleOptions: LineStyleOptions = {
@@ -95,7 +95,7 @@ const barStyleOptions: StackableStyleOptions = {
 
 export default function Dashboard() {
   const [yearFilter, setYearFilter] = useState<Filter | null>(
-    filters.members(DM.Commerce.Date.Years, ["2013-01-01T00:00:00"])
+    filterFactory.members(DM.Commerce.Date.Years, ["2013-01-01T00:00:00"])
   );
   const [countryFilter, setCountryFilter] = useState<Filter | null>(null);
 
@@ -106,22 +106,22 @@ export default function Dashboard() {
   const pieActiveFilters = useMemo<Filter[]>(() => {
     return [
       ...activeFilters,
-      filters.members(DM.Commerce.Gender, ["Male", "Female"]),
+      filterFactory.members(DM.Commerce.Gender, ["Male", "Female"]),
     ].filter((f) => !!f);
   }, [activeFilters]);
 
   const barActiveFilters = useMemo<Filter[]>(() => {
     return [
       ...activeFilters,
-      filters.topRanking(DM.Category.Category, DM.Measures.SumRevenue, 3),
+      filterFactory.topRanking(DM.Category.Category, DM.Measures.SumRevenue, 3),
     ].filter((f) => !!f);
   }, [activeFilters]);
 
   const scatterActiveFilters = useMemo<Filter[]>(() => {
     return [
       ...activeFilters,
-      filters.members(DM.Commerce.Gender, ["Male", "Female"]),
-      filters.topRanking(DM.Category.Category, DM.Measures.SumRevenue, 10),
+      filterFactory.members(DM.Commerce.Gender, ["Male", "Female"]),
+      filterFactory.topRanking(DM.Category.Category, DM.Measures.SumRevenue, 10),
     ].filter((f) => !!f);
   }, [activeFilters]);
 
@@ -138,8 +138,8 @@ export default function Dashboard() {
                 },
               ],
               secondary: [],
-              min: [measures.constant(0)],
-              max: [measures.constant(125000000)],
+              min: [measureFactory.constant(0)],
+              max: [measureFactory.constant(125000000)],
             }}
             filters={activeFilters}
             styleOptions={getIndicatorStyleOptions("Total Revenue")}
@@ -150,8 +150,8 @@ export default function Dashboard() {
             dataOptions={{
               value: [DM.Measures.Quantity],
               secondary: [],
-              min: [measures.constant(0)],
-              max: [measures.constant(250000)],
+              min: [measureFactory.constant(0)],
+              max: [measureFactory.constant(250000)],
             }}
             filters={activeFilters}
             styleOptions={getIndicatorStyleOptions("Total Units Sold")}
@@ -160,10 +160,10 @@ export default function Dashboard() {
         <div className="h-[200px] border-b-2">
           <IndicatorChart
             dataOptions={{
-              value: [measures.countDistinct(DM.Commerce.VisitID)],
+              value: [measureFactory.countDistinct(DM.Commerce.VisitID)],
               secondary: [],
-              min: [measures.constant(0)],
-              max: [measures.constant(100000)],
+              min: [measureFactory.constant(0)],
+              max: [measureFactory.constant(100000)],
             }}
             filters={activeFilters}
             styleOptions={getIndicatorStyleOptions("Total Sales")}
@@ -172,10 +172,10 @@ export default function Dashboard() {
         <div className="h-[200px]">
           <IndicatorChart
             dataOptions={{
-              value: [measures.countDistinct(DM.Brand.BrandID)],
+              value: [measureFactory.countDistinct(DM.Brand.BrandID)],
               secondary: [],
-              min: [measures.constant(0)],
-              max: [measures.constant(2500)],
+              min: [measureFactory.constant(0)],
+              max: [measureFactory.constant(2500)],
             }}
             filters={activeFilters}
             styleOptions={getIndicatorStyleOptions("Total Brands")}
@@ -291,4 +291,4 @@ export default function Dashboard() {
       </div>
     </div>
   );
-}`
+}`;

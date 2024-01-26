@@ -1,7 +1,7 @@
-import ExecuteQueryChartExample from "../examples-chart-components/connected/ExecuteQueryChart";
-import ConnectedChartExample from "../examples-chart-components/connected/ChartWithDatamodel";
-import Article from "../components/Article";
-import Divider from "../components/Divider";
+import ExecuteQueryChartExample from '../examples-chart-components/connected/ExecuteQueryChart';
+import ConnectedChartExample from '../examples-chart-components/connected/ChartWithDatamodel';
+import Article from '../components/Article';
+import Divider from '../components/Divider';
 
 export default function ChartsConnected() {
   return (

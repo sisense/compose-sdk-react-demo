@@ -1,9 +1,10 @@
-import ChartsPage from "../examples-chart-components/ChartComponents";
-import Article from "../components/Article";
-import CodeBlock from "../components/CodeBlock";
-import CodeHighlight from "../components/CodeHighlight";
-import Paragraph from "../components/Paragraph";
-import SubTitle from "../components/SubTitle";
+import ChartsPage from '../examples-chart-components/ChartComponents';
+import Article from '../components/Article';
+import CodeBlock from '../components/CodeBlock';
+import CodeHighlight from '../components/CodeHighlight';
+import Paragraph from '../components/Paragraph';
+import SubTitle from '../components/SubTitle';
+import Divider from '../components/Divider';
 
 export default function Charts() {
   return (
@@ -16,12 +17,10 @@ export default function Charts() {
         <header className="flex items-baseline">
           <div className="flex flex-col mr-4 flex-1">
             <SubTitle id="data">Sample data</SubTitle>
-            <Paragraph>
-              Through the examples, we will use the following example data
-            </Paragraph>
+            <Paragraph>Through the examples, we will use the following example data</Paragraph>
           </div>
         </header>
-        <CodeHighlight uniqueKey={"data-sample"}>
+        <CodeHighlight uniqueKey={'data-sample'}>
           <CodeBlock language="tsx">
             {`export const exampleData = {
   data: {
@@ -70,6 +69,7 @@ export default function Charts() {
           </CodeBlock>
         </CodeHighlight>
       </article>
+      <Divider />
       <ChartsPage />
     </Article>
   );

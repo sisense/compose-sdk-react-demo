@@ -1,39 +1,33 @@
-import { useEffect, useState } from "react";
-import Prism from "prismjs";
+import { useEffect, useState } from 'react';
+import Prism from 'prismjs';
 
-import "prismjs/components/prism-jsx";
-import "prismjs/components/prism-typescript";
-import "prismjs/components/prism-tsx";
-import "prismjs/plugins/line-numbers/prism-line-numbers.js";
-import "prismjs/plugins/line-numbers/prism-line-numbers.css";
+import 'prismjs/components/prism-jsx';
+import 'prismjs/components/prism-typescript';
+import 'prismjs/components/prism-tsx';
+import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
+import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 
-import { ButtonGroup } from "../../components/ButtonGroup";
-import { cartesianArgs } from "../data";
-import { Chart, ExecuteQuery } from "@sisense/sdk-ui";
-import {
-  Data,
-  DimensionalAttribute,
-  DimensionalBaseMeasure,
-} from "@sisense/sdk-data";
-import CodeBlock from "../../components/CodeBlock";
-import SubTitle from "../../components/SubTitle";
-import Paragraph from "../../components/Paragraph";
-import Header from "../../components/Header";
+import { ButtonGroup } from '../../components/ButtonGroup';
+import { cartesianArgs } from '../data';
+import { Chart, ExecuteQuery } from '@sisense/sdk-ui';
+import { Data, DimensionalAttribute, DimensionalBaseMeasure } from '@sisense/sdk-data';
+import CodeBlock from '../../components/CodeBlock';
+import SubTitle from '../../components/SubTitle';
+import Paragraph from '../../components/Paragraph';
+import Header from '../../components/Header';
 
 export default function DynamicDatamodelExecuteQuery() {
-  const [view, setView] = useState("Preview");
+  const [view, setView] = useState('Preview');
   const dynamicModel = {
-    dataSource: "Sample ECommerce",
-    attributes: [
-      new DimensionalAttribute("AgeRange", "[Commerce.Age Range]", "attribute"),
-    ],
+    dataSource: 'Sample ECommerce',
+    attributes: [new DimensionalAttribute('AgeRange', '[Commerce.Age Range]', 'attribute')],
     filters: [],
     highlights: [],
     measures: [
       new DimensionalBaseMeasure(
-        "sum Revenue",
-        new DimensionalAttribute("Revenue", "[Commerce.Revenue]", "attribute"),
-        "sum"
+        'sum Revenue',
+        new DimensionalAttribute('Revenue', '[Commerce.Revenue]', 'attribute'),
+        'sum',
       ),
     ],
   };
@@ -52,21 +46,17 @@ export default function DynamicDatamodelExecuteQuery() {
             Connect chart to data model using ExecuteQuery <br />
           </Paragraph>
         </div>
-        <ButtonGroup
-          selected={view}
-          onChange={setView}
-          labels={["Preview", "React"]}
-        />
+        <ButtonGroup selected={view} onChange={setView} labels={['Preview', 'React']} />
       </Header>
 
-      {view === "Preview" && (
+      {view === 'Preview' && (
         <ExecuteQuery
           dataSource={dynamicModel.dataSource}
           dimensions={[dynamicModel.attributes[0]]}
           measures={[dynamicModel.measures[0]]}
           filters={[]}
         >
-          {(data: Data) => {
+          {({ data }) => {
             console.log(data);
             const props = {
               ...cartesianArgs,
@@ -77,12 +67,12 @@ export default function DynamicDatamodelExecuteQuery() {
                 breakBy: [],
               },
             };
-            return <Chart chartType={"column"} {...props} />;
+            return <Chart chartType={'column'} {...props} />;
           }}
         </ExecuteQuery>
       )}
 
-      {view === "React" && (
+      {view === 'React' && (
         <CodeBlock language="tsx">
           {`import React from "react";
 import { Chart, ExecuteQuery } from "@sisense/sdk-ui";
@@ -116,7 +106,7 @@ export default function ConnectedChart() {
           measures={[dynamicModel.measures[0]]}
           filters={[]}
         >
-          {(data) => {
+          {({data}) => {
             const props = {
               ...cartesianArgs,
               dataSet: data,

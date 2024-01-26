@@ -1,68 +1,68 @@
-import { useState } from "react";
-import CodeHighlight from "../components/CodeHighlight";
+import { useState } from 'react';
+import CodeHighlight from '../components/CodeHighlight';
 
-import { ButtonGroup } from "../components/ButtonGroup";
+import { ButtonGroup } from '../components/ButtonGroup';
 import {
   GaugeIndicatorStyleOptions,
   IndicatorChart,
-  IndicatorDataOptions,
+  IndicatorChartDataOptions,
   NumericBarIndicatorStyleOptions,
   NumericSimpleIndicatorStyleOptions,
   IndicatorComponents,
-} from "@sisense/sdk-ui";
-import { Data } from "@sisense/sdk-data";
+} from '@sisense/sdk-ui';
+import { Data } from '@sisense/sdk-data';
 
-import CodeBlock from "../components/CodeBlock";
-import SubTitle from "../components/SubTitle";
-import Paragraph from "../components/Paragraph";
-import Header from "../components/Header";
+import CodeBlock from '../components/CodeBlock';
+import SubTitle from '../components/SubTitle';
+import Paragraph from '../components/Paragraph';
+import Header from '../components/Header';
 
 const indicatorData: Data = {
   columns: [
     {
-      name: "Total Cost",
-      type: "number",
+      name: 'Total Cost',
+      type: 'number',
     },
     {
-      name: "Total Revenue",
-      type: "number",
+      name: 'Total Revenue',
+      type: 'number',
     },
     {
-      name: "min",
-      type: "number",
+      name: 'min',
+      type: 'number',
     },
     {
-      name: "max",
-      type: "number",
+      name: 'max',
+      type: 'number',
     },
   ],
   rows: [[107.27, 38.76, 0, 255]],
 };
 
-const indicatorDataOptions: IndicatorDataOptions = {
+const indicatorDataOptions: IndicatorChartDataOptions = {
   value: [
     {
-      name: "Total Cost",
-      aggregation: "sum",
+      name: 'Total Cost',
+      aggregation: 'sum',
     },
   ],
   secondary: [
     {
-      name: "Total Revenue",
-      aggregation: "sum",
+      name: 'Total Revenue',
+      aggregation: 'sum',
     },
   ],
-  min: [{ name: "min" }],
-  max: [{ name: "max" }],
+  min: [{ name: 'min' }],
+  max: [{ name: 'max' }],
 };
 
-const indicatorComponents: IndicatorComponents =  {
+const indicatorComponents: IndicatorComponents = {
   title: {
     shouldBeShown: true,
-    text: "Total Cost",
+    text: 'Total Cost',
   },
   secondaryTitle: {
-    text: "Total Revenue",
+    text: 'Total Revenue',
   },
   ticks: {
     shouldBeShown: true,
@@ -73,67 +73,67 @@ const indicatorComponents: IndicatorComponents =  {
 };
 
 const numericSimpleIndicatorStyleOptions: NumericSimpleIndicatorStyleOptions = {
-  subtype: "indicator/numeric",
-  skin: "horizontal",
-  numericSubtype: "numericSimple",
+  subtype: 'indicator/numeric',
+  skin: 'horizontal',
+  numericSubtype: 'numericSimple',
   indicatorComponents,
 };
 
 const numericBarIndicatorStyleOptions: NumericBarIndicatorStyleOptions = {
-  subtype: "indicator/numeric",
-  numericSubtype: "numericBar",
-  indicatorComponents
+  subtype: 'indicator/numeric',
+  numericSubtype: 'numericBar',
+  indicatorComponents,
 };
 
 const gaugeIndicatorStyleOptions: GaugeIndicatorStyleOptions = {
-  subtype: "indicator/gauge",
+  subtype: 'indicator/gauge',
   skin: 1,
-  indicatorComponents
+  indicatorComponents,
 };
 
 export default function IndicatorChartExample() {
-  const [view, setView] = useState("Preview");
+  const [view, setView] = useState('Preview');
 
   return (
     <CodeHighlight uniqueKey={view}>
       <article className="my-8 w-full" id="Indicator">
-      <Header>
+        <Header>
           <div className="flex flex-col mr-4 flex-1">
             <SubTitle id="Indicator">Indicator chart</SubTitle>
             <Paragraph>
-              The Indicator chart is a simple chart that displays a single value
-              and a secondary value. It can be used to display a KPI or a
-              comparison between two values.
-
-              In order for the Indicator chart to render properly, the parent should contain height.
+              The Indicator chart is a simple chart that displays a single value and a secondary
+              value. It can be used to display a KPI or a comparison between two values. In order
+              for the Indicator chart to render properly, the parent should contain height.
             </Paragraph>
           </div>
-          <ButtonGroup
-            selected={view}
-            onChange={setView}
-            labels={["Preview", "React"]}
-          />
+          <ButtonGroup selected={view} onChange={setView} labels={['Preview', 'React']} />
         </Header>
-        {view === "Preview" && (
+        {view === 'Preview' && (
           <div>
             <div className="h-[250px]">
-              <IndicatorChart dataSet={indicatorData}
-                              dataOptions={indicatorDataOptions}
-                              styleOptions={numericSimpleIndicatorStyleOptions} />
+              <IndicatorChart
+                dataSet={indicatorData}
+                dataOptions={indicatorDataOptions}
+                styleOptions={numericSimpleIndicatorStyleOptions}
+              />
             </div>
             <div className="h-[250px]">
-              <IndicatorChart dataSet={indicatorData}
-                              dataOptions={indicatorDataOptions}
-                              styleOptions={numericBarIndicatorStyleOptions} />
+              <IndicatorChart
+                dataSet={indicatorData}
+                dataOptions={indicatorDataOptions}
+                styleOptions={numericBarIndicatorStyleOptions}
+              />
             </div>
             <div className="h-[350px]">
-              <IndicatorChart dataSet={indicatorData}
-                              dataOptions={indicatorDataOptions}
-                              styleOptions={gaugeIndicatorStyleOptions} />
+              <IndicatorChart
+                dataSet={indicatorData}
+                dataOptions={indicatorDataOptions}
+                styleOptions={gaugeIndicatorStyleOptions}
+              />
             </div>
           </div>
         )}
-        {view === "React" && (
+        {view === 'React' && (
           <CodeBlock language="tsx">
             {`import React from "react";
 import {

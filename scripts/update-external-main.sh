@@ -15,7 +15,7 @@ git fetch origin
 git checkout -B external-main origin/external-main
 
 # Reset your local external-main branch to the master branch and stage changes.
-git diff origin/external-main origin/master | git apply --whitespace=fix
+git diff origin/external-main origin/master --binary | git apply --whitespace=fix
 
 # Remove sensitive or irrelevant information
 rm -Rf ./src/internal

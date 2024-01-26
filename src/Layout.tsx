@@ -1,11 +1,8 @@
-import ScrollToHashElement from "./components/ScrollToHashElement";
-import SidebarNavigation from "./SidebarNavigation";
-import { Outlet } from "react-router-dom";
-import HamburgerIcon from "./components/icons/Hamburger";
-import { useState } from "react";
-
-
-
+import ScrollToHashElement from './components/ScrollToHashElement';
+import SidebarNavigation from './SidebarNavigation';
+import { Outlet } from 'react-router-dom';
+import HamburgerIcon from './components/icons/Hamburger';
+import { useState } from 'react';
 
 export default function Layout() {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,10 +19,7 @@ export default function Layout() {
         <ScrollToHashElement />
 
         <main className="p-1 md:p-4 overflow-auto w-full relative">
-          <div
-            onClick={onMenuToggle}
-            className="md:hidden fixed z-10 top-4 right-4 cursor-pointer"
-          >
+          <div onClick={onMenuToggle} className="md:hidden fixed z-10 top-4 right-4 cursor-pointer">
             <HamburgerIcon />
           </div>
           {<Outlet />}
